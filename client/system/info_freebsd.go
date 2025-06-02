@@ -35,6 +35,9 @@ func GetInfo(ctx context.Context) *Info {
 	}
 
 	osName, osVersion := readOsReleaseFile()
+	if osName == "" && osVersion == "" {
+		osName, osVersion = readOsCoreFile()
+	}
 
 	systemHostname, _ := os.Hostname()
 
